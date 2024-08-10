@@ -1,0 +1,73 @@
+import java.util.Scanner;
+
+public class Program {
+    private static int nextId = 1; // Static variable for auto-incrementing student IDs
+    private static String[] names = new String[100];
+    private static char[] grades = new char[100];
+    private static int studentCount = 0; // Number of students added
+    
+    // Static method to add a student
+    public static void addStudent(String name, char grade) {
+        if (studentCount < 100) {
+            names[studentCount] = name;
+            grades[studentCount] = grade;
+            studentCount++;
+        } else {
+            System.out.println("Cannot add more students. Maximum limit reached.");
+        }
+    }
+    
+    // Static method to display all students
+    public static void displayStudents() {
+        if (studentCount == 0) {
+            System.out.println("No students to display.");
+        } else {
+            for (int i = 0; i < studentCount; i++) {
+                System.out.println("Student ID: " + (i + 1) + ", Name: " + names[i] + ", Grade: " + grades[i]);
+            }
+        }
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean execute = true;
+
+        while (execute) {
+            
+            
+            try {
+                int choice = sc.nextInt();
+                sc.nextLine(); // Consume newline character
+
+                switch (choice) {
+                    case 1:
+                        
+                        String name = sc.nextLine();
+                       
+                        char grade = sc.next().charAt(0);
+                        sc.nextLine(); 
+                        addStudent(name, grade);
+                        break;
+                    case 2:
+                        displayStudents();
+                        break;
+                    case 3:
+                    //	System.out.println();
+            	        System.out.println();
+                        System.out.println("Exiting");
+                        execute = false;
+                        break;
+                    case 6:
+                    //System.out.println();
+            	    System.out.println();
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+                }
+            } catch (Exception e) {
+             	
+            }
+        }
+
+        sc.close();
+    }
+}
